@@ -1,4 +1,4 @@
-# CSI Katbox Driver
+# Katbox
 
 Katbox is an inline ephemeral volume manager with delayed deletion for Kubernetes.
 
@@ -15,18 +15,19 @@ Deployment varies depending on the Kubernetes version your cluster is running:
 - [Deployment for Kubernetes 1.18 and later](docs/deploy-1.18-and-later.md)
 
 ## Examples
-The following examples assume that the CSI Katbox driver has been deployed and validated:
-- [Inline ephemeral volumes](docs/example-ephemeral.md)
+Assuming katbox has been successfully deployed, the following example can be run using `kubectl`:
+
+`$ kubectl apply -f https://raw.githubusercontent.com/paypal/katbox/main/examples/csi-app-inline.yaml`
 
 ## Building the binaries
-If you want to build the driver yourself, you can do so with the following command from the root directory:
+To build the driver, run the following command from the root of the repository:
 
 ```shell
 make
 ```
 
 ## Building a docker image
-If you want to make a docker image to be used on a kubernetes cluster you may do so with the following command:
+To build a docker image to be used on a kubernetes cluster, run the following command from the root of the repository:
 
 ```shell
 docker build . -t <image name>
