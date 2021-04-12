@@ -30,7 +30,7 @@ func init() {
 
 var (
 	endpoint          = flag.String("endpoint", "unix://tmp/csi.sock", "CSI endpoint")
-	driverName        = flag.String("drivername", "kbox.csi.paypal.com", "name of the driver")
+	driverName        = flag.String("drivername", "katbox.csi.paypal.com", "name of the driver")
 	nodeID            = flag.String("nodeid", "", "node id")
 	maxVolumesPerNode = flag.Int64("maxvolumespernode", 0, "limit of volumes per node")
 	workdir           = flag.String("workdir", "/csi-data-dir", "Location where plugin will store configuration and directories")
