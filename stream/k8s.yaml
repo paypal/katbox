@@ -1,0 +1,23 @@
+#---#
+#k8s-base.yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: streamserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamserver
+  template:
+    metadata:
+        labels:
+          app: streamserver
+    spec:
+      containers:
+        - name: streamserver
+          image: streamserver:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+

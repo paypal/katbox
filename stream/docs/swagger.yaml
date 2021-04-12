@@ -1,0 +1,113 @@
+basePath: /
+definitions:
+  main.FileInformation:
+    properties:
+      gid:
+        type: string
+      mode:
+        type: string
+      mtime:
+        type: string
+      nlink:
+        type: string
+      path:
+        type: string
+      size:
+        type: string
+      uid:
+        type: string
+    type: object
+  main.Result:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/main.FileInformation'
+        type: array
+    type: object
+  main.StreamData:
+    properties:
+      data:
+        type: string
+      offset:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: Revanth Chandra
+  description: Rest API doc for sandbox API's
+  title: k8s Sandbox Go Restful API with Swagger
+  version: "1.0"
+paths:
+  /files/browse:
+    get:
+      consumes:
+      - application/json
+      description: serves sandbox logs filesystem as a json object
+      parameters:
+      - description: Path
+        in: query
+        name: path
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Result'
+      summary: Browse Filesystem
+  /files/download:
+    get:
+      consumes:
+      - application/json
+      description: Download any file from sandbox logs filesystem
+      parameters:
+      - description: Path
+        in: query
+        name: path
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.StreamData'
+      summary: Download a file from Filesystem
+  /files/read:
+    get:
+      consumes:
+      - application/json
+      description: Reads any file from sandbox logs filesystem and serves as a json
+        object
+      parameters:
+      - description: Path
+        in: query
+        name: path
+        required: true
+        type: string
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      - description: Length
+        in: query
+        name: length
+        required: true
+        type: integer
+      - description: jsonp
+        in: query
+        name: jsonp
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.StreamData'
+      summary: Read a file from Filesystem
+swagger: "2.0"

@@ -1,0 +1,170 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Rest API doc for sandbox API's",
+        "title": "k8s Sandbox Go Restful API with Swagger",
+        "contact": {
+            "name": "Revanth Chandra",
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/files/browse": {
+            "get": {
+                "description": "serves sandbox logs filesystem as a json object",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Browse Filesystem",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Path",
+                        "name": "path",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/files/download": {
+            "get": {
+                "description": "Download any file from sandbox logs filesystem",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "summary": "Download a file from Filesystem",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Path",
+                        "name": "path",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.StreamData"
+                        }
+                    }
+                }
+            }
+        },
+        "/files/read": {
+            "get": {
+                "description": "Reads any file from sandbox logs filesystem and serves as a json object",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "Read a file from Filesystem",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Path",
+                        "name": "path",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Length",
+                        "name": "length",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "jsonp",
+                        "name": "jsonp",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.StreamData"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.FileInformation": {
+            "type": "object",
+            "properties": {
+                "gid": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "mtime": {
+                    "type": "string"
+                },
+                "nlink": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Result": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.FileInformation"
+                    }
+                }
+            }
+        },
+        "main.StreamData": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
