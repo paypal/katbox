@@ -1,0 +1,32 @@
+name: Create Docker Images
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and push to Quay
+    steps:
+      - uses: actions/checkout@v2
+      - name: Log into the container repository
+        run: |
+          docker login  \
+            --username "${{ secrets.CONTAINER_REPO_USERNAME }}" \
+            --password "${{ secrets.CONTAINER_REPO_TOKEN }}" \
+            quay.io/katbox
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Build
+        run: make
+      - name: Build all of the container images
+        run: |
+          docker build . --tag quay.io/katbox/driver:latest --no-cache
+      - name: Push the images
+        if: github.ref == 'refs/heads/main'
+        run: |
+          docker push quay.io/katbox/driver:latest
