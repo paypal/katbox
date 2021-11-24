@@ -1,13 +1,5 @@
 package main
 
-/*
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <stdlib.h>
-*/
-import "C"
-
 import (
 	"encoding/json"
 	"fmt"
@@ -19,10 +11,10 @@ import (
 	"os/user"
 	"path/filepath"
 	"strconv"
-	_ "stream/docs"
 	"strings"
 	"syscall"
 
+	_ "github.com/paypal/katbox/stream/docs"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
@@ -169,15 +161,15 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Cap the read length at 16 pages.
-	length = int64(math.Min(float64(length), float64(C.sysconf(C._SC_PAGE_SIZE)*16)))
+	length = int64(math.Min(float64(length), float64(os.Getpagesize()*16)))
 
 	// return empty data when offset is greater than size of the file
 	if offset >= size {
-		staremData := &StreamData{
+		streamData := &StreamData{
 			Data:   "",
 			Offset: size}
 
-		respObj, err := json.Marshal(staremData)
+		respObj, err := json.Marshal(streamData)
 		if err != nil {
 			fmt.Fprintf(w, "json encode error")
 			return

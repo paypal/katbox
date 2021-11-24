@@ -8,9 +8,11 @@ require (
 	github.com/kubernetes-csi/csi-lib-utils v0.9.0
 	github.com/ricochet2200/go-disk-usage v0.0.0-20150921141558-f0d1b743428f
 	github.com/stretchr/testify v1.6.1
+	github.com/swaggo/http-swagger v1.0.0
+	github.com/swaggo/swag v1.7.0
 	go.etcd.io/bbolt v1.3.5
 	golang.org/x/net v0.0.0-20201209123823-ac852fbbde11
-	golang.org/x/sys v0.0.0-20201207223542-d4d67f95c62d // indirect
+	golang.org/x/tools v0.1.0 // indirect
 	google.golang.org/genproto v0.0.0-20201209185603-f92720507ed4 // indirect
 	google.golang.org/grpc v1.34.0
 	k8s.io/kubernetes v1.20.12
