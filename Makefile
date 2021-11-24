@@ -23,16 +23,19 @@ clean:
 	-rm -rf bin
 
 build:
-	CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" go build -a -ldflags '-X main.version=$(REV) -extldflags "-static"' -o ./bin/katboxplugin ./cmd/katboxplugin/main.go
+	CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" go build -a -ldflags '-X main.version=$(REV) -extldflags "-static"' -o ./bin/katbox-driver ./cmd/katboxplugin/main.go
+
+build-stream:
+	CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" go build -o ./bin/katbox-stream ./stream/main.go
 
 docker-build-katbox:
-	docker build  . --tag quay.io/katbox/katboxplugin:${VERSION} --no-cache
+	docker build . --tag quay.io/katbox/katboxplugin:${VERSION} --no-cache
 
 docker-push-katbox:
 	docker push quay.io/katbox/katboxplugin:${VERSION}
    
 docker-build-stream:
-	docker build  ./stream --tag quay.io/katbox/stream:${VERSION} --no-cache
+	docker build . -f ./stream/Dockerfile --tag quay.io/katbox/stream:${VERSION} --no-cache
 
 docker-push-stream:
 	docker push quay.io/katbox/stream:${VERSION}
