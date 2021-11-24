@@ -65,7 +65,7 @@ spec:
               name: csi-data-dir
 
         - name: katbox
-          image: k8s.gcr.io/sig-storage/livenessprobe:v2.2.0
+          image: quay.io/katbox/driver:latest
           args:
             - "--drivername=katbox.csi.paypal.com"
             - "--v=5"
