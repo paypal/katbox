@@ -16,5 +16,7 @@ jobs:
       with:
         go-version: 1.17
 
-    - name: Build
+    - name: Build Driver
       run: make
+    - name: Build Stream
+      run: make build-stream
