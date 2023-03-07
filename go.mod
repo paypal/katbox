@@ -11,7 +11,7 @@ require (
 	github.com/swaggo/http-swagger v1.2.6
 	github.com/swaggo/swag v1.7.9
 	go.etcd.io/bbolt v1.3.6
-	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d
+	golang.org/x/net v0.7.0
 	google.golang.org/grpc v1.38.0
 	k8s.io/kubernetes v1.22.2
 	k8s.io/mount-utils v0.22.2
