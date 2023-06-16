@@ -4,18 +4,18 @@ go 1.16
 
 require (
 	github.com/container-storage-interface/spec v1.5.0
-	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+	github.com/golang/glog v1.0.0
 	github.com/kubernetes-csi/csi-lib-utils v0.9.0
 	github.com/ricochet2200/go-disk-usage v0.0.0-20150921141558-f0d1b743428f
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.0
 	github.com/swaggo/http-swagger v1.2.6
 	github.com/swaggo/swag v1.7.9
 	go.etcd.io/bbolt v1.3.6
-	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d
-	google.golang.org/grpc v1.38.0
-	k8s.io/kubernetes v1.22.2
+	golang.org/x/net v0.8.0
+	google.golang.org/grpc v1.40.0
+	k8s.io/kubernetes v1.24.14
 	k8s.io/mount-utils v0.22.2
-	k8s.io/utils v0.0.0-20210819203725-bdf08cb9a70a
+	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9
 )
 
 replace (
