@@ -1,3 +1,5 @@
+![status: archive](https://github.com/GIScience/badges/raw/master/status/archive.svg)
+
 # Katbox ![Docker Images](https://github.com/paypal/katbox/actions/workflows/create-push-image.yml/badge.svg)
 
 Katbox is an inline ephemeral volume manager with delayed deletion for Kubernetes.
